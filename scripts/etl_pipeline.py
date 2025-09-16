@@ -157,12 +157,13 @@ class PropertyDataTransformer:
         """Clean and validate individual property record""" 
         cleaned = {}
     
+        logging.info(f"DEBUG config: {self.field_config}")
+        logging.info(f"DEBUG field_mapping: {self.field_config.field_mapping}")
         for field, value in raw_data.items():
             logging.info(f"DEBUG field: {field} {value}") 
             if field in self.field_config.field_mapping:
                 logging.info(f"DEBUG field_mapping found for: {field}")
                 config = self.field_config.field_mapping[field]
-                logging.info(f"DEBUG config: {config}")
                 cleaned_value = self._clean_value(value, config['type'])
                 logging.info(f"DEBUG cleaned_value: {cleaned_value}")
                 if cleaned_value is not None:
